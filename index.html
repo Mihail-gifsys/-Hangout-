@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html lang="sr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jedno pitanje za Andrijanu</title>
+
+<style>
+
+* {
+
+  box-sizing: border-box;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+body {
+
+  min-height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 24px;
+
+  overflow: hidden;
+
+  background:
+
+    radial-gradient(ellipse at 50% 40%, #29251b 0%, #111110 48%, #080808 100%);
+
+  color: #f5f0e6;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+}
+
+.card {
+
+  width: 100%;
+
+  max-width: 440px;
+
+  padding: 48px 28px;
+
+  text-align: center;
+
+  border: 1px solid rgba(232, 190, 100, 0.25);
+
+  border-radius: 28px;
+
+  background: rgba(20, 20, 18, 0.82);
+
+  box-shadow: 0 0 80px rgba(214, 164, 66, 0.08);
+
+  backdrop-filter: blur(16px);
+
+  animation: appear 1s ease both;
+
+}
+
+.eyebrow {
+
+  color: #c9a75c;
+
+  font-size: 11px;
+
+  letter-spacing: 4px;
+
+  text-transform: uppercase;
+
+  margin-bottom: 25px;
+
+}
+
+h1 {
+
+  font-size: clamp(30px, 8vw, 42px);
+
+  font-weight: 500;
+
+  letter-spacing: -1.5px;
+
+  line-height: 1.15;
+
+  margin-bottom: 20px;
+
+}
+
+h1 span {
+
+  color: #e3bd70;
+
+}
+
+.message {
+
+  color: #aaa69d;
+
+  font-size: 15px;
+
+  line-height: 1.8;
+
+  margin-bottom: 34px;
+
+}
+
+.divider {
+
+  width: 42px;
+
+  height: 1px;
+
+  margin: 0 auto 30px;
+
+  background: #b99751;
+
+}
+
+.buttons {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 14px;
+
+  min-height: 52px;
+
+}
+
+button {
+
+  border-radius: 14px;
+
+  padding: 15px 27px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+
+  -webkit-tap-highlight-color: transparent;
+
+}
+
+#yes {
+
+  color: #17140e;
+
+  background: linear-gradient(135deg, #f0d18c, #c29a4d);
+
+  border: none;
+
+  box-shadow: 0 5px 25px rgba(214, 174, 91, 0.16);
+
+}
+
+#yes:hover {
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 8px 30px rgba(214, 174, 91, 0.28);
+
+}
+
+#no {
+
+  color: #c7c2b8;
+
+  background: transparent;
+
+  border: 1px solid #45423b;
+
+}
+
+#no:hover {
+
+  border-color: #8c7950;
+
+}
+
+#answer {
+
+  display: none;
+
+  margin-top: 28px;
+
+  color: #e3bd70;
+
+  font-size: 16px;
+
+  line-height: 1.7;
+
+  animation: appear 0.5s ease both;
+
+}
+
+.signature {
+
+  margin-top: 38px;
+
+  color: #615d53;
+
+  font-size: 11px;
+
+  letter-spacing: 2px;
+
+}
+
+.heart {
+
+  position: fixed;
+
+  top: -30px;
+
+  color: #e6bd68;
+
+  pointer-events: none;
+
+  z-index: 10;
+
+  animation: fall linear forwards;
+
+}
+
+@keyframes fall {
+
+  to {
+
+    transform: translateY(110vh) rotate(360deg);
+
+    opacity: 0;
+
+  }
+
+}
+
+@keyframes appear {
+
+  from { opacity: 0; transform: translateY(12px); }
+
+  to { opacity: 1; transform: translateY(0); }
+
+}
+
+@media (max-width: 380px) {
+
+  .card { padding: 38px 20px; }
+
+  button { padding: 14px 22px; }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<main class="card">
+
+  <p class="eyebrow">Jedno malo pitanje</p>
+
+  <h1>Zdravo, <span>Andrijana.</span></h1>
+
+  <p class="message">
+
+    Imam jedan mali predlog za tebe.<br>
+
+    Voleo bih da provedemo malo vremena zajedno.
+
+    <br><br>
+
+    Da li bi išla sa mnom na kafu
+
+    kada budem došao u Šabac?
+
+  </p>
+
+  <div class="divider"></div>
+
+  <div class="buttons">
+
+    <button id="yes" onclick="sayYes()">Da ♡</button>
+
+    <button id="no" onclick="moveNo()">Ne</button>
+
+  </div>
+
+  <p id="answer">
+
+    Važi onda. Radujem se toj kafi. 💛
+
+  </p>
+
+  <p class="signature">SAMO ZA TEBE · A</p>
+
+</main>
+
+<script>
+
+function sayYes() {
+
+  document.getElementById("answer").style.display = "block";
+
+  document.getElementById("no").style.display = "none";
+
+  document.getElementById("yes").textContent = "Dogovoreno ♡";
+
+  for (let i = 0; i < 35; i++) {
+
+    setTimeout(createHeart, i * 65);
+
+  }
+
+}
+
+function createHeart() {
+
+  const heart = document.createElement("div");
+
+  heart.className = "heart";
+
+  heart.textContent = Math.random() > 0.5 ? "♥" : "✦";
+
+  heart.style.left = Math.random() * 100 + "vw";
+
+  heart.style.fontSize = (12 + Math.random() * 17) + "px";
+
+  heart.style.animationDuration = (2.5 + Math.random() * 3) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 6000);
+
+}
+
+function moveNo() {
+
+  const button = document.getElementById("no");
+
+  const maxX = Math.max(0, window.innerWidth - button.offsetWidth - 20);
+
+  const maxY = Math.max(0, window.innerHeight - button.offsetHeight - 20);
+
+  button.style.position = "fixed";
+
+  button.style.left = (10 + Math.random() * Math.max(1, maxX - 10)) + "px";
+
+  button.style.top = (10 + Math.random() * Math.max(1, maxY - 10)) + "px";
+
+}
+
+</script>
+
+</body>
+
+</html>
